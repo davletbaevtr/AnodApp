@@ -12,15 +12,14 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import com.example.anod_compose.R
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.example.anod_compose.ui.theme.Blue
 import com.example.anod_compose.ui.theme.BlueWhite
 
-@Preview
 @Composable
-fun HelloScreen() {
+fun HelloScreen(navController: NavHostController) {
     // A surface container using the 'background' color from the theme
     Surface(
         modifier = Modifier.fillMaxSize(),
