@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">АНОД</string>
+    <string name="auth_anod_description">anod icon with animation</string>
+    <string name="hello_text1">Привет, Мы АНОД!</string>
+    <string name="hello_text2">Наша главная цель - сделать информацию об олимпиадах доступной каждому.</string>
+    <string name="hello_text3">В приложении ты найдёшь материалы для подготовки в удобном формате и системой поиска</string>
+    <string name="sign_up_button_text">Регистрация</string>
+    <string name="sign_in_button_text">У меня уже есть аккаунт</string>
+    <string name="hello_button_text">Привет, АНОД!</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main2">MainActivity2</string>
+</resources>
