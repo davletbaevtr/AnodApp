@@ -9,57 +9,60 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.anod_compose.R
+import com.example.anod_compose.navigation.NavRoute
+import com.example.anod_compose.ui.theme.Anod_ComposeTheme
 import com.example.anod_compose.ui.theme.Blue
 import com.example.anod_compose.ui.theme.BlueWhite
 
 @Composable
 fun AuthScreen(navController: NavHostController) {
-    // A surface container using the 'background' color from the theme
-    Surface(
+    // A column container for image and column of buttons
+    Column(
         modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.background
+        verticalArrangement = Arrangement.SpaceEvenly,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // A column container for image and column of buttons
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.SpaceEvenly,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            // ANOD image
-            Image(
-                modifier = Modifier
-                    .weight(3f),
-                painter = painterResource(id = R.drawable.anod_logo),
-                contentDescription = "anod_svg"
-            )
-            // Sign up and sign in buttons
-            SignButtons(Modifier.fillMaxWidth().weight(1f))
-        }
+        // ANOD image
+        Image(
+            modifier = Modifier
+                .weight(3f),
+            painter = painterResource(id = R.drawable.anod_logo),
+            contentDescription = "anod_svg"
+        )
+        // Sign up and sign in buttons
+        SignButtons(
+            Modifier
+                .fillMaxWidth()
+                .weight(1f), navController)
     }
 }
 
 @Composable
-fun SignButtons(modifier: Modifier) {
+fun SignButtons(modifier: Modifier, navController: NavHostController) {
     // A column of buttons
-    Column (
+    Column(
         modifier = modifier,
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        SignUpButton()
+        SignUpButton(navController)
 
-        SignInButton()
+        SignInButton(navController)
     }
 }
 
 @Composable
-fun SignInButton() {
+fun SignInButton(navController: NavHostController) {
     // A text button
     TextButton(
-        onClick = { /*TODO*/ }
+        onClick = {
+            navController.navigate(NavRoute.SignIn.route)
+        }
     ) {
         Text(
             modifier = Modifier
@@ -73,10 +76,12 @@ fun SignInButton() {
 }
 
 @Composable
-fun SignUpButton() {
+fun SignUpButton(navController: NavHostController) {
     // A button with text
     Button(
-        onClick = { /*TODO*/ },
+        onClick = {
+            navController.navigate(NavRoute.SignUp.route)
+        },
         modifier = Modifier
             .fillMaxWidth(0.73F)
             .padding(bottom = 10.dp),
@@ -90,8 +95,21 @@ fun SignUpButton() {
         Text(
             modifier = Modifier.padding(vertical = 8.dp),
             text = stringResource(R.string.sign_up_button_text),
-            style = MaterialTheme.typography.titleLarge,
+            style = MaterialTheme.typography.titleMedium,
             color = BlueWhite
         )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun AuthPreview() {
+    Anod_ComposeTheme {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            AuthScreen(navController = rememberNavController())
+        }
     }
 }

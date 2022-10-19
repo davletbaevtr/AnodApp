@@ -12,30 +12,37 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import com.example.anod_compose.R
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import com.example.anod_compose.navigation.NavRoute
+import com.example.anod_compose.ui.theme.Anod_ComposeTheme
 import com.example.anod_compose.ui.theme.Blue
 import com.example.anod_compose.ui.theme.BlueWhite
+import com.example.anod_compose.ui.theme.Shapes
 
 @Composable
 fun HelloScreen(navController: NavHostController) {
-    // A surface container using the 'background' color from the theme
-    Surface(
+    // Column with Texts and Button
+    Column(
         modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.background
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // Column with Texts and Button
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            // Texts and Contacts with weight 3
-            HelloTextAndContacts(Modifier.fillMaxSize().weight(3f))
+        // Texts and Contacts with weight 3
+        HelloTextAndContacts(
+            Modifier
+                .fillMaxSize()
+                .weight(3f)
+        )
 
-            // Button with text and weight 1
-            HelloButton(Modifier.fillMaxSize().weight(1f))
-        }
+        // Button with text and weight 1
+        HelloButton(
+            Modifier
+                .fillMaxSize()
+                .weight(1f), navController
+        )
     }
 }
 
@@ -46,7 +53,7 @@ fun HelloTextAndContacts(modifier: Modifier) {
         modifier = modifier
     ) {
         // Column with texts contacts
-        Column (
+        Column(
             modifier = Modifier
                 .fillMaxSize()
                 .align(Alignment.Center),
@@ -69,29 +76,32 @@ fun HelloTextAndContacts(modifier: Modifier) {
 }
 
 @Composable
-fun HelloButton(modifier: Modifier) {
+fun HelloButton(modifier: Modifier, navController: NavHostController) {
     // Box with modifier mod(weight, size)
-    Box (
+    Box(
         modifier = modifier
     ) {
         // Clickable button with elevation
         // going to AuthActivity
         Button(
-            onClick = {},
+            onClick = {
+                navController.navigate(NavRoute.Auth.route)
+            },
             modifier = Modifier
                 .fillMaxWidth(0.73f)
-                .padding(10.dp)
                 .align(Alignment.Center),
             colors = ButtonDefaults.buttonColors(Blue),
             elevation = ButtonDefaults.buttonElevation(
                 defaultElevation = 2.dp,
                 pressedElevation = 5.dp,
                 disabledElevation = 0.dp
-            )
+            ),
+            shape = Shapes.extraLarge
         ) {
             Text(
+                modifier = Modifier.padding(vertical = 5.dp),
                 text = stringResource(R.string.hello_button_text),
-                style = MaterialTheme.typography.titleLarge,
+                style = MaterialTheme.typography.titleMedium,
                 color = BlueWhite
             )
         }
@@ -108,7 +118,8 @@ fun HelloBorderText() {
             defaultElevation = 2.dp,
             pressedElevation = 5.dp,
             disabledElevation = 0.dp
-        )
+        ),
+        shape = Shapes.medium
     ) {
         // Column with texts
         Column(
@@ -121,7 +132,7 @@ fun HelloBorderText() {
                     .fillMaxWidth(0.9f)
                     .padding(vertical = 10.dp),
                 text = stringResource(R.string.hello_text1),
-                style = MaterialTheme.typography.titleLarge,
+                style = MaterialTheme.typography.titleMedium,
                 color = Blue,
                 textAlign = TextAlign.Center
             )
@@ -165,7 +176,7 @@ fun HelloContacts() {
         color = Blue
     )
     // Using LazyRow for dynamic contacts
-    LazyRow (
+    LazyRow(
         modifier = Modifier
             .fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceEvenly,
@@ -183,6 +194,19 @@ fun HelloContacts() {
                     contentDescription = "contact $index"
                 )
             }
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun HelloPreview() {
+    Anod_ComposeTheme {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            HelloScreen(navController = rememberNavController())
         }
     }
 }

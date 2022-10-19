@@ -10,6 +10,14 @@ import com.example.anod_compose.R
 
 // Set of Material typography styles to start with
 val Typography = Typography(
+    titleLarge = TextStyle(
+        fontFamily = FontFamily(Font(R.font.font1)),
+        fontWeight = FontWeight.Normal,
+        fontSize = 40.sp,
+        lineHeight = 50.sp,
+        letterSpacing = 0.sp
+    ),
+
     bodyMedium = TextStyle(
         fontFamily = FontFamily(Font(R.font.font1)),
         fontWeight = FontWeight.Normal,
@@ -26,7 +34,7 @@ val Typography = Typography(
         letterSpacing = 0.sp
     ),
 
-    titleLarge = TextStyle(
+    titleMedium = TextStyle(
         fontFamily = FontFamily(Font(R.font.font1)),
         fontWeight = FontWeight.Normal,
         fontSize = 24.sp,
