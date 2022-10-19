@@ -15,6 +15,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.anod_compose.R
 import com.example.anod_compose.navigation.NavRoute
@@ -31,7 +32,7 @@ fun SignInScreen(navController: NavHostController) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceEvenly
     ) {
-        // A box container with text and "back" button
+        // A box container with text //  and "back" button
         Box(
             modifier = Modifier
                 .fillMaxSize()
@@ -48,14 +49,10 @@ fun SignInScreen(navController: NavHostController) {
                 color = Blue,
                 textAlign = TextAlign.Center
             )
-            // A "back" button
-            Button(
-                onClick = { // add check in database then save user info navigate
-                    navController.navigate(NavRoute.Main.route)
-                }
-            ) {
-
-            }
+            /*A "back" button
+                Button(onClick = { // add check in database then save user info navigate
+                navController.navigate(NavRoute.Auth.route)}) {}
+            */
         }
         Box(
             modifier = Modifier

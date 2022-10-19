@@ -12,7 +12,6 @@ import com.example.anod_compose.ui.theme.Anod_ComposeTheme
 
 @Composable
 fun MainScreen(navController: NavHostController) {
-
 }
 
 @Preview(showBackground = true)
