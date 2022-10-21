@@ -36,9 +36,9 @@ fun AuthScreen(navController: NavHostController) {
         )
         // Sign up and sign in buttons
         SignButtons(
-            Modifier
-                .fillMaxWidth()
-                .weight(1f), navController)
+            Modifier.fillMaxWidth().weight(1f),
+            navController
+        )
     }
 }
 

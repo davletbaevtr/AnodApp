@@ -1,5 +1,6 @@
 package com.example.anod_compose.screens
 
+import android.content.SharedPreferences
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
@@ -35,7 +36,7 @@ import com.example.anod_compose.ui.theme.Shapes
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SignInScreen(navController: NavHostController) {
+fun SignInScreen(navController: NavHostController, pref: SharedPreferences) {
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -152,19 +153,6 @@ fun SignInScreen(navController: NavHostController) {
                     color = BlueWhite
                 )
             }
-        }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun SignInPreview() {
-    Anod_ComposeTheme {
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colorScheme.background
-        ) {
-            SignInScreen(navController = rememberNavController())
         }
     }
 }

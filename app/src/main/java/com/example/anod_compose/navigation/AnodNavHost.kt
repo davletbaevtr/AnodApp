@@ -17,24 +17,19 @@ sealed class NavRoute(val route: String) {
 }
 
 @Composable
-fun AnodNavHost(pref: SharedPreferences?) {
+fun AnodNavHost(pref: SharedPreferences) {
     val navController = rememberNavController()
-    var startDestination = NavRoute.Main.route
 
-    if (pref!!.getBoolean("is_first_launch", true)) {
-        startDestination = NavRoute.Hello.route
-
-        val editor = pref.edit()
-        editor?.putBoolean("is_first_launch", false)
-        editor?.apply()
-
+    var startDestination = NavRoute.Hello.route
+    if (pref.getBoolean("is_sign_in", false)) {
+        startDestination = NavRoute.Main.route
     }
 
     NavHost(navController = navController, startDestination = startDestination) {
         composable(NavRoute.Hello.route) { HelloScreen(navController) }
         composable(NavRoute.Main.route) { MainScreen(navController) }
         composable(NavRoute.Auth.route) { AuthScreen(navController) }
-        composable(NavRoute.SignIn.route) { SignInScreen(navController) }
-        composable(NavRoute.SignUp.route) { SignUpScreen(navController) }
+        composable(NavRoute.SignIn.route) { SignInScreen(navController, pref) }
+        composable(NavRoute.SignUp.route) { SignUpScreen(navController, pref) }
     }
 }

@@ -1,5 +1,7 @@
 package com.example.anod_compose.screens
 
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -16,14 +18,17 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
+import androidx.navigation.NavOptions
+import androidx.navigation.Navigation
 import androidx.navigation.compose.rememberNavController
 import com.example.anod_compose.navigation.NavRoute
 import com.example.anod_compose.ui.theme.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SignUpScreen(navController: NavHostController) {
+fun SignUpScreen(navController: NavHostController, pref: SharedPreferences) {
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -139,19 +144,6 @@ fun SignUpScreen(navController: NavHostController) {
                     color = BlueWhite
                 )
             }
-        }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun SignUpPreview() {
-    Anod_ComposeTheme() {
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colorScheme.background
-        ) {
-            SignUpScreen(navController = rememberNavController())
         }
     }
 }
