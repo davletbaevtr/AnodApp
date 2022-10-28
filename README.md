@@ -1,4 +1,4 @@
-# AnodApp
+# AnodApp(on progress)
 Stack:
 - Android SDK
 - Kotlin
